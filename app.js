@@ -34,12 +34,12 @@ const h2Tags = document.querySelectorAll('h2');
 console.log(h2Tags);
 
 btn.addEventListener('click', () => {
-  h2Tags.forEach(tag => tag.innerHTML = rand(1, 6));
+  if (heading1.innerHTML === heading2.innerHTML) {
+    h2Tags.forEach(tag => tag.style.color = 'red');
+  } else {
+    h2Tags.forEach(tag => tag.style.color = 'black');
+  }
 });
-
-if (h2Tags[0] === h2Tags[1]) {
-  tag.style.color = 'red';
-};
 
 // Tiesiogiai HTML faile rankiniu būdu sukurkite <h3> tagą ir vieną mygtuką. Susikurkite tuščią masyvą, skaičiams saugoti. (2 taškai)
 const h3Tag = document.createElement('h3');
@@ -57,39 +57,43 @@ console.log(h3Tag, but, numArray);
 // Paspaudus mygtuką, sugeneruokite rand() skaičių nuo 1 iki 10. Sugeneruotą skaičių pridėkite į masyvą, o tą masyvą atspausdinkite konsolėle. (4 taškai)
 
 but.addEventListener('click', () => {
-  h3Tag.innerHTML = rand(1, 10);
-  numArray.push(parseInt(h3Tag.innerHTML));
+  numArray.push(rand(1, 10));
   console.log(numArray);
 });
 
 
 // <h3> tage skaičiuokite ir su innerText() metodu rašykite visų sugeneruotų skaičių sumą. (4 taškai)
-let sum = 0;
-for (let i = 0;i < numArray.length;i++) {
-  sum += numArray[i];
-}
-h3Tag.innerHTML = sum;
-console.log(sum);
+
+but.addEventListener('click', () => {
+  let sum = 0;
+  for (let i = 0;i < numArray.length;i++) {
+    sum += numArray[i];
+  }
+  h3Tag.innerHTML = sum;
+});
 
 // Tiesiogiai HTML faile rankiniu būdu sukurkite <ul> tagą. (2 taškai)
 
 const ulTag = document.createElement('ul');
 console.log(ulTag);
 
-//  JS pagalba perskaitykite masyvą africa. (4 taškai)
-ulTag.innerHTML = africa;
-
 document.body.appendChild(ulTag);
 
+//  JS pagalba perskaitykite masyvą africa. (4 taškai)
+africa.forEach((el, i) => console.log(i, el));
+
 // Naudodami createElement() ir kitus reikalingus metodus sukurkite kiekvienam masyvo elementui po <li> tagą su elemento stringu viduje ir juos įrašykite į <ul> tago vidų. (5 taškai)
+//  Elementus su tuščiais stringais praleiskite ir jiems <li> elementų nekurkite. (4 taškai)
 
 africa.forEach(el => {
-  const li = document.createElement('li');
-  li.innerHTML = el;
-  ulTag.appendChild(li);
+  if (el !== '') {
+    const li = document.createElement('li');
+    li.innerHTML = el;
+    ulTag.appendChild(li);
+  }
 });
 
-//  Elementus su tuščiais stringais praleiskite ir jiems <li> elementų nekurkite. (4 taškai)
+console.log(ulTag);
 
 //  Tiesiogiai HTML faile rankiniu būdu sukurkite du tuščius input laukelius, vieną <h5> tagą ir du mygtukus: “+” ir “-”. (2 taškai)
 
@@ -125,19 +129,24 @@ but2.addEventListener('click', () => {
 
 // Tiesiogiai HTML faile rankiniu būdu sukurkite <ul> tagą. (2 taškai)
 
+const UL = document.createElement('ul');
+document.body.appendChild(UL);
+console.log(UL);
+
 // JS pagalba perskaitykite masyvą australia ir kiekvieną masyvo elementą įrašykite į strigą su <li> tagais iš abiejų pusių, o visus gautus stringus sudėkite į vieną bendrą stringą. (8 taškai)
 
-const UL = document.createElement('ul');
+const animalList = australia.map((el) => '<li>' + el + '</li>').join('');
 
-australia.forEach(el => {
-  const li = document.createElement('li');
-  australia.innerHTML = el;
-  UL.appendChild(li);
-});
-console.log(australia);
+console.log(animalList);
+
+// Tą stringą naudodami innerHTML() metodą įdėkite į <ul> tago vidų. (5 taškai)
+
+UL.innerHTML = animalList;
 console.log(UL);
 
 
+// Generavimo metu “Dingo” background’ą nuspalvinkite mėlynai. (5 taškai)
 
+const animal = document.querySelectorAll('UL li');
 
-
+animal.forEach(el => console.log(el.innerHTML === 'Dingo' ? el.style.backgroundColor = 'blue' : el.style.backgroundColor = 'transparent'));
